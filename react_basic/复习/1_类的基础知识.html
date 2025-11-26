@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>类的基础知识</title>
+    </head>
+    
+    <body>
+
+        <script type="text/javascript">
+            //创造一个person类
+            class Person{
+                //构造方法
+                constructor(name,age){
+                    this.name=name;
+                    this.age=age;
+                }
+                //实例方法
+                show(){
+                    console.log(`我的名字是${this.name},我的年龄是${this.age}`)
+                }
+            }
+
+            class Student extends Person{
+                constructor(name,age,score){
+                    super(name,age)
+                    this.score=score
+                }
+                show(){
+                    super.show()
+                    console.log(`我的分数是${this.score}`)
+                }
+            }
+
+            //创建对象
+            // const p1=new Person('张三',18)
+
+            const s1=new Student('张三',18,100)
+            s1.show()
+            
+        </script>
+    </body>
+</html>
