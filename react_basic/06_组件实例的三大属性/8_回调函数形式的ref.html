@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>ref</title>
+    </head>
+    
+    <body>
+        <div id="test1"></div>
+        <div id="test2"></div>
+        <!-- 引入react核心库 -->
+        <script type="text/javascript" src="../js/react.development.js"></script>
+        <!-- 引入react-dom,用于支持react操作DOM -->
+        <script type="text/javascript" src="../js/react-dom.development.js"></script>
+        <!-- 引入babel,用于将jsx转为js-->
+        <script type="text/javascript" src="../js/babel.min.js"></script>
+        <!-- 引入prop-type，用于对组件标签属性进行限制 -->
+         <script type="text/javascript" src="../js/prop-types.js"></script>
+
+        <script type="text/babel">
+            class Demo extends React.Component{
+                //展示数据
+                showData=()=>{
+                    // console.log("showData----->",this.refs.input1.value)
+                    // alert(this.refs.input1.value)
+                    alert(this.input1.value)
+                }
+                showData2=()=>{
+                    console.log("showData2----->",this.input2.value)
+                }
+                render(){
+                    return(
+                        <div>
+                            <input type="text" placeholder="点击按钮提示数据" ref={a=>this.input1=a}/>
+                            <button onClick={this.showData}>点击</button>
+                            <input onBlur={this.showData2} ref={a=>this.input2=a} type="text" placeholder="失去焦点提示数据"/>
+                        </div>
+                    )
+                }
+            }
+            
+
+            //渲染虚拟Dom到页面
+            ReactDOM.render(<Demo/>,document.getElementById('test1'))
+            
+        </script>
+    </body>
+</html>
