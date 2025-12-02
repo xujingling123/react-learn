@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>生命周期（新）</title>
+    </head>
+    <style>
+        .list{
+            background-color: pink;
+            width: 500px;
+            height: 300px;
+            overflow: auto;
+
+        }
+        .news{
+            height: 50px;
+            
+        }
+
+    </style>
+
+    
+    <body>
+        <div id="test1"></div>
+        <div id="test2"></div>
+        <!-- 引入react核心库 -->
+        <script type="text/javascript" src="../js/17.0.1/react.development.js"></script>
+        <!-- 引入react-dom,用于支持react操作DOM -->
+        <script type="text/javascript" src="../js/17.0.1/react-dom.development.js"></script>
+        <!-- 引入babel,用于将jsx转为js-->
+        <script type="text/javascript" src="../js/17.0.1/babel.min.js"></script>
+        <!-- 引入prop-type，用于对组件标签属性进行限制 -->
+         <script type="text/javascript" src="../js/17.0.1/prop-types.js"></script>
+
+         <!-- 常见的高阶函数有：Promise map filter reduce 函数柯里化 -->
+
+        <script type="text/babel">
+            class NewsList extends React.Component{
+                state={newArr:[]}
+
+                componentDidMount(){
+                    //模拟请求
+                    setInterval(()=>{
+                        const {newArr}=this.state
+                        const news='新闻'+(newArr.length+1)
+                        this.setState({
+                            newArr:[news,...newArr]
+                        })
+                    },1000)
+                    
+                }
+
+                getSnapshotBeforeUpdate(prevProps, prevState){ 
+                    console.log("NewsList----getSnapshotBeforeUpdate",prevProps, prevState)
+                    return this.refs.list.scrollHeight
+                }
+                componentDidUpdate(prevProps, prevState,snapshot){ 
+                    console.log("NewsList----componentDidUpdate",prevProps, prevState,snapshot)
+                    this.refs.list.scrollTop+=this.refs.list.scrollHeight-snapshot
+                }
+                render(){
+                    return(
+                        <div className="list" ref="list">
+                            {
+                                this.state.newArr.map((item,index)=>{
+                                    return <p className="news" key={index}>{item}</p>
+                                })
+                            }
+                            
+                                          
+                        </div>
+                    )
+                }
+            }
+            
+            //渲染虚拟Dom到页面
+            ReactDOM.render(<NewsList/>,document.getElementById('test1'))
+            
+        </script>
+    </body>
+</html>

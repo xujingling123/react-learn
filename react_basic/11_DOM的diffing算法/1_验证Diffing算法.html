@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>diffing</title>
+    </head>
+
+    
+    <body>
+        <div id="test1"></div>
+        <div id="test2"></div>
+        <!-- 引入react核心库 -->
+        <script type="text/javascript" src="../js/17.0.1/react.development.js"></script>
+        <!-- 引入react-dom,用于支持react操作DOM -->
+        <script type="text/javascript" src="../js/17.0.1/react-dom.development.js"></script>
+        <!-- 引入babel,用于将jsx转为js-->
+        <script type="text/javascript" src="../js/17.0.1/babel.min.js"></script>
+        <!-- 引入prop-type，用于对组件标签属性进行限制 -->
+         <script type="text/javascript" src="../js/17.0.1/prop-types.js"></script>
+
+         <!-- 常见的高阶函数有：Promise map filter reduce 函数柯里化 -->
+
+        <script type="text/babel">
+            class Time extends React.Component{
+                state={data:new Date().toLocaleTimeString()}
+
+                componentDidMount(){
+                    setInterval(()=>{
+                        this.setState({
+                            data:new Date().toLocaleTimeString()
+                        })
+                    },1000)
+                }
+                render(){
+                    return(
+                        <div>
+                            <h1>时间</h1>
+                            <input type="text" />
+                            <span>当前时间是：{this.state.data}
+                                <input type="text" />
+                                
+                            </span>
+                        </div>
+                    )
+                }
+            }
+            
+            //渲染虚拟Dom到页面
+            ReactDOM.render(<Time/>,document.getElementById('test1'))
+            
+        </script>
+    </body>
+</html>

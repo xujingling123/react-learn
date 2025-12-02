@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>diffing</title>
+    </head>
+
+    
+    <body>
+        <div id="test1"></div>
+        <div id="test2"></div>
+        <!-- 引入react核心库 -->
+        <script type="text/javascript" src="../js/17.0.1/react.development.js"></script>
+        <!-- 引入react-dom,用于支持react操作DOM -->
+        <script type="text/javascript" src="../js/17.0.1/react-dom.development.js"></script>
+        <!-- 引入babel,用于将jsx转为js-->
+        <script type="text/javascript" src="../js/17.0.1/babel.min.js"></script>
+        <!-- 引入prop-type，用于对组件标签属性进行限制 -->
+         <script type="text/javascript" src="../js/17.0.1/prop-types.js"></script>
+
+         <!-- 常见的高阶函数有：Promise map filter reduce 函数柯里化 -->
+
+        <script type="text/babel">
+            class Person extends React.Component{
+                state={
+                    persons:[
+                        {id:1,name:'张三',age:18},
+                        {id:2,name:'李四',age:19},
+                        {id:3,name:'王五',age:20}
+                    ]
+                }
+                add=()=>{
+                    const persons=[...this.state.persons]
+                    persons.push({id:4,name:'赵六',age:21})
+                    this.setState({persons})
+                }
+
+                render(){
+                    return(
+                        <div>
+                            <h2>Person</h2>
+                            <button onClick={this.add}>添加</button>
+                            <ul>
+                                {
+                                    this.state.persons.map((item,index)=>{
+                                        return <li key={item.id}>{item.name}---{item.age}</li>
+                                    })
+                                }
+                            </ul>
+                        </div>
+                    )
+                }
+            }
+            
+            //渲染虚拟Dom到页面
+            ReactDOM.render(<Person/>,document.getElementById('test1'))
+            
+        </script>
+    </body>
+</html>
