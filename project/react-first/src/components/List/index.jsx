@@ -1,24 +1,31 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import './index.css'
-import Item from '../Item'
 
 export default class index extends Component {
-    // 属性验证
-    static propTypes = {
-        todos: PropTypes.array.isRequired,
-        updateTodo: PropTypes.func.isRequired
-    }
-    
   render() {
-    const { todos,updateTodo,deleteTodo }= this.props
+    const {users,isFirst,isLoading,err} = this.props
     return (
-            <ul className="todo-main">
-                {todos.map(item => (
-                    <Item key={item.id} item={item} updateTodo={updateTodo} deleteTodo={deleteTodo}/>
-                ))}
+      <div className="row">
+        {
+            this.props.users.map((user) => {
+                return (
+                     <div key={user.id} className="card">
+                        <a href={user.html_url} target="_blank">
+                        <img src={user.avatar_url} style={{width: '100px'}}/>
+                        </a>
+                        <p className="card-text">{user.login}</p>
+                    </div>
+
+                )
+
+            }
                 
-            </ul>
+            )
+        }
+
+          
+          
+        </div>
     )
   }
 }
