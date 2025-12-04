@@ -1,6 +1,6 @@
 //创建“外壳”组件App
 import React,{Component} from "react";
-import {NavLink,Route,Redirect} from "react-router-dom";
+import {NavLink,Route} from "react-router-dom";
 import About from "./pages/About";
 import Home from "./pages/Home";//路由组件
 import Header from "./components/Header"//一般组件
@@ -27,8 +27,6 @@ class App extends Component {
               <div className="panel-body">
                 <Route path="/about" component={About}/>
                 <Route path="/home" component={Home}/>
-                {/* 当无法匹配路由时，重定向 */}
-                <Redirect to="/about"/>
               </div>
             </div>
           </div>

@@ -28,7 +28,7 @@ class App extends Component {
                 <Route path="/about" component={About}/>
                 <Route path="/home" component={Home}/>
                 {/* 当无法匹配路由时，重定向 */}
-                <Redirect to="/about"/>
+                <Redirect to="/home"/>
               </div>
             </div>
           </div>
