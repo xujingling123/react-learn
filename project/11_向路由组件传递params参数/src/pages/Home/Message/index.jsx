@@ -5,9 +5,9 @@ import Detail from './Detail'
 export default class index extends Component {
     state={
         messageArr:[
-            {id:'1',title:'message1'},
-            {id:'2',title:'message2'},
-            {id:'3',title:'message3'},
+            {id:1,title:'message1'},
+            {id:2,title:'message2'},
+            {id:3,title:'message3'},
         ]
     }
   render() {
@@ -18,14 +18,14 @@ export default class index extends Component {
                         this.state.messageArr.map(item=>{
                             return (
                                 <li key={item.id}>
-                                    <Link to={{pathname:'/home/message/detail',state:{id:item.id,title:item.title}}}>{item.title}</Link>
+                                    <Link to={`/home/message/detail/${item.id}/${item.title}`}>{item.title}</Link>
                                 </li>
                             )
                         })
                     }
                   </ul>
                   <hr/>
-                  <Route path="/home/message/detail" component={Detail} />
+                  <Route path="/home/message/detail/:id/:title" component={Detail} />
       </div>
     )
   }
