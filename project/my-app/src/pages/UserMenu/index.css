@@ -1,0 +1,33 @@
+/* src/pages/userMenu/index.css */
+.container {
+  /* 设置背景图片 */
+  background-image: url('http://open.shidasender.com/img/leftBg.0265a80c.png');
+  
+  /* 宽度100%显示，高度自动缩放（保持宽高比）*/
+  background-size: 100% auto;
+  
+  /* 背景图片靠上对齐 */
+  background-position: top;
+
+  /* 不重复平铺 */
+  background-repeat: no-repeat;
+  
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+.title{
+    font-size: 12px;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    padding: 10px 0;
+}
+
+.menu{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+}
