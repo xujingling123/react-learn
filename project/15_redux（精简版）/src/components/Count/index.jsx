@@ -1,30 +1,40 @@
 import React, { Component } from 'react'
-
+import store from '../../redux/store'
 
 export default class Count extends Component {
-
-   
+    componentDidMount(){
+        //监测redux状态改变
+        store.subscribe(()=>this.setState({}))
+    }
     increment=()=>{ 
         const {value} = this.selectNumber;
-        this.props.add(parseInt(value))
+        store.dispatch({type:'increment',data:parseInt(value)})
+        
     }
     decrement=()=>{ 
         const {value} = this.selectNumber;
-        this.props.minus(parseInt(value))         
+        store.dispatch({type:'decrement',data:parseInt(value)})
+        
     }
     incrementIfOdd=()=>{ 
         const {value} = this.selectNumber;
-        this.props.addIfOdd(parseInt(value))  
+        const count=store.getState()
+        if(count%2!==0){
+            store.dispatch({type:'increment',data:parseInt(value)})
+        }
+        
     }
     incrementAsync=()=>{ 
         const {value} = this.selectNumber;
-        this.props.addAsync(parseInt(value))     
+        setTimeout(()=>{
+            store.dispatch({type:'increment',data:parseInt(value)})
+        },1000)
+        
     }
   render() {
-    const {count} = this.props;
     return (
       <div>
-        <h2>当前求和为：{count}</h2>
+        <h2>当前求和为：{store.getState()}</h2>
         <select ref={c=>this.selectNumber=c}>
             <option value="1">1</option>
             <option value="2">2</option>
